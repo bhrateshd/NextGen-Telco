@@ -1,0 +1,63 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: development
+
+namePrefix: dev-
+
+commonLabels:
+  environment: dev
+  managed-by: kustomize
+
+commonAnnotations:
+  environment: development
+  updated-at: "2026-03-12"
+
+bases:
+  - ../../base/frontend
+
+replicas:
+  - name: frontend
+    count: 1
+
+patches:
+  - target:
+      kind: Deployment
+      name: frontend
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: nextgen-telco/frontend:dev
+      - op: replace
+        path: /spec/template/spec/containers/0/imagePullPolicy
+        value: Always
+      - op: replace
+        path: /spec/template/spec/containers/0/env/0/value
+        value: http://api-gateway.development:8080
+      - op: replace
+        path: /spec/template/spec/containers/0/env/1/value
+        value: development
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 64Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/cpu
+        value: 50m
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 128Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/cpu
+        value: 250m
+
+configMapGenerator:
+  - name: frontend-config
+    literals:
+      - environment=development
+      - api_base_url=http://api-gateway.development:8080
+      - log_level=DEBUG
+      - debug_mode=true
+
+images:
+  - name: nextgen-telco/frontend
+    newTag: dev

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plan-service
+spec:
+  replicas: 3
+  template:
+    spec:
+      containers:
+      - name: plan-service
+        image: nextgen-telco/plan-service:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: NODE_ENV
+          value: production
+        - name: LOG_LEVEL
+          value: warn
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "500m"
+          limits:
+            memory: "512Mi"
+            cpu: "2000m"
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - plan-service
+            topologyKey: kubernetes.io/hostname

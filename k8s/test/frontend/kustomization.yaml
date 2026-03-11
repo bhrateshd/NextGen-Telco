@@ -1,0 +1,63 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: testing
+
+namePrefix: test-
+
+commonLabels:
+  environment: test
+  managed-by: kustomize
+
+commonAnnotations:
+  environment: testing
+  updated-at: "2026-03-12"
+
+bases:
+  - ../../base/frontend
+
+replicas:
+  - name: frontend
+    count: 1
+
+patches:
+  - target:
+      kind: Deployment
+      name: frontend
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: nextgen-telco/frontend:test
+      - op: replace
+        path: /spec/template/spec/containers/0/imagePullPolicy
+        value: Always
+      - op: replace
+        path: /spec/template/spec/containers/0/env/0/value
+        value: http://api-gateway.testing:8080
+      - op: replace
+        path: /spec/template/spec/containers/0/env/1/value
+        value: testing
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 128Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/cpu
+        value: 100m
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 256Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/cpu
+        value: 500m
+
+configMapGenerator:
+  - name: frontend-config
+    literals:
+      - environment=testing
+      - api_base_url=http://api-gateway.testing:8080
+      - log_level=INFO
+      - debug_mode=false
+
+images:
+  - name: nextgen-telco/frontend
+    newTag: test

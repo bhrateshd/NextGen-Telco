@@ -1,0 +1,83 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: production
+
+namePrefix: prod-
+
+commonLabels:
+  environment: prod
+  managed-by: kustomize
+
+commonAnnotations:
+  environment: production
+  updated-at: "2026-03-12"
+
+bases:
+  - ../../base/user-service
+
+replicas:
+  - name: user-service
+    count: 3
+
+patches:
+  - target:
+      kind: Deployment
+      name: user-service
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: nextgen-telco/user-service:latest
+      - op: replace
+        path: /spec/template/spec/containers/0/imagePullPolicy
+        value: IfNotPresent
+      - op: replace
+        path: /spec/template/spec/containers/0/env/3/valueFrom/secretKeyRef/name
+        value: prod-user-service-secret
+      - op: replace
+        path: /spec/template/spec/containers/0/env/4/value
+        value: WARN
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 512Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/cpu
+        value: 500m
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 1Gi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/cpu
+        value: 2000m
+      - op: add
+        path: /spec/template/spec/affinity
+        value:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                    - user-service
+                topologyKey: kubernetes.io/hostname
+
+configMapGenerator:
+  - name: user-service-config
+    literals:
+      - environment=production
+      - log_level=WARN
+      - database_pool_size=20
+      - cache_enabled=true
+      - cache_ttl=3600
+
+secretGenerator:
+  - name: user-service-secret
+    literals:
+      - database_url=postgresql://postgres:password@postgres-prod.production:5432/user_db_prod
+
+images:
+  - name: nextgen-telco/user-service
+    newTag: latest

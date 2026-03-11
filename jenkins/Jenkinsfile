@@ -1,22 +1,143 @@
-// Jenkinsfile for NextGen-Telco CI/CD pipeline
+// Global Jenkins pipeline configuration
+@Library('shared-library') _
+
 pipeline {
     agent any
-    
+
+    options {
+        timeout(time: 1, unit: 'HOURS')
+        timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '30'))
+    }
+
+    parameters {
+        choice(name: 'ENVIRONMENT', choices: ['dev', 'test', 'staging', 'prod'], description: 'Deployment environment')
+        string(name: 'IMAGE_TAG', defaultValue: 'latest', description: 'Docker image tag')
+    }
+
+    environment {
+        DOCKER_REGISTRY = 'docker.io'
+        DOCKER_REPO = 'nextgen-telco'
+        KUBECONFIG = credentials('kubeconfig-${ENVIRONMENT}')
+    }
+
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo 'Building...'
+                checkout scm
+                script {
+                    GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+                    GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+                }
             }
         }
+
+        stage('Build') {
+            when {
+                branch 'main'
+            }
+            parallel {
+                stage('Build Frontend') {
+                    steps {
+                        dir('frontend') {
+                            sh '''
+                                docker build -t ${DOCKER_REGISTRY}/${DOCKER_REPO}/frontend:${IMAGE_TAG} .
+                                docker build -t ${DOCKER_REGISTRY}/${DOCKER_REPO}/frontend:${GIT_COMMIT} .
+                            '''
+                        }
+                    }
+                }
+                stage('Build User Service') {
+                    steps {
+                        dir('services/user-service') {
+                            sh '''
+                                docker build -t ${DOCKER_REGISTRY}/${DOCKER_REPO}/user-service:${IMAGE_TAG} .
+                                docker build -t ${DOCKER_REGISTRY}/${DOCKER_REPO}/user-service:${GIT_COMMIT} .
+                            '''
+                        }
+                    }
+                }
+                stage('Build Order Service') {
+                    steps {
+                        dir('services/order-service') {
+                            sh '''
+                                docker build -t ${DOCKER_REGISTRY}/${DOCKER_REPO}/order-service:${IMAGE_TAG} .
+                                docker build -t ${DOCKER_REGISTRY}/${DOCKER_REPO}/order-service:${GIT_COMMIT} .
+                            '''
+                        }
+                    }
+                }
+            }
+        }
+
         stage('Test') {
             steps {
-                echo 'Testing...'
+                sh '''
+                    echo "Running tests for ${ENVIRONMENT}..."
+                    # Add test commands here
+                '''
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
+
+        stage('Push Images') {
+            when {
+                branch 'main'
             }
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-registry', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh '''
+                        docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
+                        docker push ${DOCKER_REGISTRY}/${DOCKER_REPO}/frontend:${IMAGE_TAG}
+                        docker push ${DOCKER_REGISTRY}/${DOCKER_REPO}/frontend:${GIT_COMMIT}
+                        docker push ${DOCKER_REGISTRY}/${DOCKER_REPO}/user-service:${IMAGE_TAG}
+                        docker push ${DOCKER_REGISTRY}/${DOCKER_REPO}/user-service:${GIT_COMMIT}
+                        docker push ${DOCKER_REGISTRY}/${DOCKER_REPO}/order-service:${IMAGE_TAG}
+                        docker push ${DOCKER_REGISTRY}/${DOCKER_REPO}/order-service:${GIT_COMMIT}
+                        docker logout
+                    '''
+                }
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            when {
+                branch 'main'
+            }
+            steps {
+                sh '''
+                    echo "Deploying to ${ENVIRONMENT} cluster..."
+                    kubectl apply -k k8s/${ENVIRONMENT}/
+                    kubectl rollout status deployment/frontend -n ${ENVIRONMENT}
+                    kubectl rollout status deployment/user-service -n ${ENVIRONMENT}
+                    kubectl rollout status deployment/order-service -n ${ENVIRONMENT}
+                '''
+            }
+        }
+
+        stage('Smoke Tests') {
+            steps {
+                sh '''
+                    echo "Running smoke tests..."
+                    # Add smoke test commands here
+                    sleep 30
+                    kubectl get pods -n ${ENVIRONMENT}
+                '''
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline execution completed'
+            cleanWs()
+        }
+        success {
+            echo "Deployment to ${ENVIRONMENT} successful!"
+            // Add notification here
+        }
+        failure {
+            echo "Deployment to ${ENVIRONMENT} failed!"
+            // Add notification here
         }
     }
 }

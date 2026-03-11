@@ -1,0 +1,222 @@
+pipeline {
+    agent any
+
+    environment {
+        REGISTRY = 'nextgen-telco'
+        NODE_ENV = 'production'
+        DOCKER_BUILDKIT = '1'
+        DOCKER_COMPOSE_VERSION = '2'
+    }
+
+    options {
+        timeout(time: 30, unit: 'MINUTES')
+        timestamps()
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+                sh 'echo "Building from branch: ${GIT_BRANCH}"'
+            }
+        }
+
+        stage('Build Services Docker Images') {
+            parallel {
+                stage('Build Auth Service') {
+                    steps {
+                        sh '''
+                            cd services/auth-service
+                            docker build -t ${REGISTRY}/auth-service:${BUILD_NUMBER} .
+                            docker tag ${REGISTRY}/auth-service:${BUILD_NUMBER} ${REGISTRY}/auth-service:latest
+                        '''
+                    }
+                }
+                stage('Build User Service') {
+                    steps {
+                        sh '''
+                            cd services/user-service
+                            docker build -t ${REGISTRY}/user-service:${BUILD_NUMBER} .
+                            docker tag ${REGISTRY}/user-service:${BUILD_NUMBER} ${REGISTRY}/user-service:latest
+                        '''
+                    }
+                }
+                stage('Build Plan Service') {
+                    steps {
+                        sh '''
+                            cd services/plan-service
+                            docker build -t ${REGISTRY}/plan-service:${BUILD_NUMBER} .
+                            docker tag ${REGISTRY}/plan-service:${BUILD_NUMBER} ${REGISTRY}/plan-service:latest
+                        '''
+                    }
+                }
+                stage('Build Device Service') {
+                    steps {
+                        sh '''
+                            cd services/device-service
+                            docker build -t ${REGISTRY}/device-service:${BUILD_NUMBER} .
+                            docker tag ${REGISTRY}/device-service:${BUILD_NUMBER} ${REGISTRY}/device-service:latest
+                        '''
+                    }
+                }
+                stage('Build Order Service') {
+                    steps {
+                        sh '''
+                            cd services/order-service
+                            docker build -t ${REGISTRY}/order-service:${BUILD_NUMBER} .
+                            docker tag ${REGISTRY}/order-service:${BUILD_NUMBER} ${REGISTRY}/order-service:latest
+                        '''
+                    }
+                }
+                stage('Build Payment Service') {
+                    steps {
+                        sh '''
+                            cd services/payment-service
+                            docker build -t ${REGISTRY}/payment-service:${BUILD_NUMBER} .
+                            docker tag ${REGISTRY}/payment-service:${BUILD_NUMBER} ${REGISTRY}/payment-service:latest
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Stop Running Containers') {
+            steps {
+                sh '''
+                    echo "Stopping existing containers..."
+                    docker-compose -f docker-compose.local.yml down || true
+                    sleep 2
+                '''
+            }
+        }
+
+        stage('Start Services') {
+            steps {
+                sh '''
+                    echo "Starting all services with docker-compose..."
+                    docker-compose -f docker-compose.local.yml up -d
+                    echo "Waiting for services to be ready..."
+                    sleep 15
+                '''
+            }
+        }
+
+        stage('Health Check') {
+            steps {
+                sh '''
+                    echo "===== Health Check ====="
+                    
+                    # Auth Service
+                    echo "Checking Auth Service (3001)..."
+                    curl -f http://localhost:3001/health || exit 1
+                    
+                    # User Service
+                    echo "Checking User Service (3002)..."
+                    curl -f http://localhost:3002/health || exit 1
+                    
+                    # Plan Service
+                    echo "Checking Plan Service (3003)..."
+                    curl -f http://localhost:3003/health || exit 1
+                    
+                    # Device Service
+                    echo "Checking Device Service (3004)..."
+                    curl -f http://localhost:3004/health || exit 1
+                    
+                    # Order Service
+                    echo "Checking Order Service (3005)..."
+                    curl -f http://localhost:3005/health || exit 1
+                    
+                    # Payment Service
+                    echo "Checking Payment Service (3006)..."
+                    curl -f http://localhost:3006/health || exit 1
+                    
+                    # API Gateway
+                    echo "Checking API Gateway (8080)..."
+                    curl -f http://localhost:8080/health || exit 1
+                    
+                    # Frontend
+                    echo "Checking Frontend (80)..."
+                    curl -f http://localhost/index.html || exit 1
+                    
+                    echo "===== All Services Healthy ====="
+                '''
+            }
+        }
+
+        stage('Smoke Tests') {
+            steps {
+                sh '''
+                    echo "===== Running Smoke Tests ====="
+                    
+                    # Test Auth Service
+                    echo "Testing Auth token generation..."
+                    curl -X POST http://localhost:3001/auth/token \
+                      -H "Content-Type: application/json" \
+                      -d '{"userId":"test-user","email":"test@example.com","role":"user"}' \
+                      || exit 1
+                    
+                    # Test User Service
+                    echo "Testing User registration..."
+                    curl -X POST http://localhost:3002/register \
+                      -H "Content-Type: application/json" \
+                      -d '{"userId":"test-123","firstName":"Test","lastName":"User","email":"test@example.com"}' \
+                      || exit 1
+                    
+                    # Test Plan Service
+                    echo "Testing Plan listing..."
+                    curl -f http://localhost:3003/ || exit 1
+                    
+                    # Test Device Service
+                    echo "Testing Device listing..."
+                    curl -f http://localhost:3004/ || exit 1
+                    
+                    # Test Order Service
+                    echo "Testing Order listing..."
+                    curl -f "http://localhost:3005/user/test-user" || exit 1
+                    
+                    # Test Payment Service
+                    echo "Testing Payment service..."
+                    curl -f http://localhost:3006/health || exit 1
+                    
+                    echo "===== Smoke Tests Passed ====="
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '''
+            ╔════════════════════════════════════════════════════╗
+            ║   Deployment Successful!                           ║
+            ╠════════════════════════════════════════════════════╣
+            ║   Services running at:                             ║
+            ║   - Auth Service:    http://localhost:3001/health  ║
+            ║   - User Service:    http://localhost:3002/health  ║
+            ║   - Plan Service:    http://localhost:3003/health  ║
+            ║   - Device Service:  http://localhost:3004/health  ║
+            ║   - Order Service:   http://localhost:3005/health  ║
+            ║   - Payment Service: http://localhost:3006/health  ║
+            ║   - API Gateway:     http://localhost:8080/health  ║
+            ║   - Frontend:        http://localhost/index.html   ║
+            ║                                                    ║
+            ║   Docker Images:                                   ║
+            ║   - View: docker images | grep nextgen-telco       ║
+            ║   - Logs: docker-compose logs -f                   ║
+            ╚════════════════════════════════════════════════════╝
+            '''
+        }
+        failure {
+            echo 'Deployment failed. Check logs above for details.'
+            sh '''
+                echo "===== Container Logs ====="
+                docker-compose -f docker-compose.local.yml logs || true
+                echo "===== Running Containers ====="
+                docker ps -a || true
+            '''
+        }
+        always {
+            echo "Build completed at $(date)"
+        }
+    }
+}

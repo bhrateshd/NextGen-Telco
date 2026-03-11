@@ -1,0 +1,68 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: testing
+
+namePrefix: test-
+
+commonLabels:
+  environment: test
+  managed-by: kustomize
+
+commonAnnotations:
+  environment: testing
+  updated-at: "2026-03-12"
+
+bases:
+  - ../../base/user-service
+
+replicas:
+  - name: user-service
+    count: 1
+
+patches:
+  - target:
+      kind: Deployment
+      name: user-service
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: nextgen-telco/user-service:test
+      - op: replace
+        path: /spec/template/spec/containers/0/imagePullPolicy
+        value: Always
+      - op: replace
+        path: /spec/template/spec/containers/0/env/3/valueFrom/secretKeyRef/name
+        value: test-user-service-secret
+      - op: replace
+        path: /spec/template/spec/containers/0/env/4/value
+        value: INFO
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 128Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/cpu
+        value: 100m
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 256Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/cpu
+        value: 500m
+
+configMapGenerator:
+  - name: user-service-config
+    literals:
+      - environment=testing
+      - log_level=INFO
+      - database_pool_size=5
+      - cache_enabled=false
+
+secretGenerator:
+  - name: user-service-secret
+    literals:
+      - database_url=postgresql://postgres:password@postgres.testing:5432/user_db_test
+
+images:
+  - name: nextgen-telco/user-service
+    newTag: test

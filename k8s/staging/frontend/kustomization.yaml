@@ -1,0 +1,63 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: staging
+
+namePrefix: stg-
+
+commonLabels:
+  environment: staging
+  managed-by: kustomize
+
+commonAnnotations:
+  environment: staging
+  updated-at: "2026-03-12"
+
+bases:
+  - ../../base/frontend
+
+replicas:
+  - name: frontend
+    count: 2
+
+patches:
+  - target:
+      kind: Deployment
+      name: frontend
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: nextgen-telco/frontend:staging
+      - op: replace
+        path: /spec/template/spec/containers/0/imagePullPolicy
+        value: IfNotPresent
+      - op: replace
+        path: /spec/template/spec/containers/0/env/0/value
+        value: https://api-staging.nextgentelco.com
+      - op: replace
+        path: /spec/template/spec/containers/0/env/1/value
+        value: staging
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: 128Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/cpu
+        value: 100m
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: 256Mi
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/cpu
+        value: 500m
+
+configMapGenerator:
+  - name: frontend-config
+    literals:
+      - environment=staging
+      - api_base_url=https://api-staging.nextgentelco.com
+      - log_level=INFO
+      - debug_mode=false
+
+images:
+  - name: nextgen-telco/frontend
+    newTag: staging
