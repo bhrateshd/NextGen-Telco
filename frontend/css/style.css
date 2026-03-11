@@ -56,11 +56,15 @@ p {
     padding: 1rem 20px;
 }
 
-.navbar-brand .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
+.navbar-brand .logo-link {
     text-decoration: none;
+    display: inline-block;
+}
+
+.navbar-brand .logo {
+    height: 50px;
+    width: auto;
+    display: block;
 }
 
 .nav-menu {
@@ -308,8 +312,9 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 600;
-    color: var(--text-light);
+    border-radius: 8px 8px 0 0;
+    object-fit: contain;
+    padding: 1rem;
 }
 
 .device-image-container {
@@ -378,8 +383,11 @@ p {
 }
 
 .benefit-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    height: 60px;
+    width: 60px;
+    margin: 0 auto 1rem;
+    display: block;
+    object-fit: contain;
 }
 
 /* Page Header */

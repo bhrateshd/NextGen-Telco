@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 240">
+  <!-- Samsung Galaxy S24 -->
+  <defs>
+    <linearGradient id="samsungGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#16213e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f3460;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Phone body -->
+  <rect x="8" y="10" width="104" height="220" rx="22" fill="url(#samsungGradient)" stroke="#444" stroke-width="2"/>
+  
+  <!-- Camera module -->
+  <rect x="15" y="18" width="45" height="28" rx="8" fill="#111" stroke="#333" stroke-width="1"/>
+  <circle cx="28" cy="32" r="7" fill="#222" stroke="#333" stroke-width="1"/>
+  <circle cx="45" cy="32" r="6" fill="#222" stroke="#333" stroke-width="1"/>
+  
+  <!-- Screen -->
+  <rect x="12" y="50" width="96" height="170" rx="18" fill="#1f1f1f" stroke="#333" stroke-width="1"/>
+  
+  <!-- Screen display area -->
+  <rect x="16" y="54" width="88" height="162" rx="14" fill="#0099ff" opacity="0.3"/>
+  
+  <!-- Status indicators on screen -->
+  <circle cx="30" cy="70" r="8" fill="#ff6b6b"/>
+  <circle cx="60" cy="70" r="8" fill="#4ecdc4"/>
+  <circle cx="90" cy="70" r="8" fill="#45b7d1"/>
+  
+  <!-- UI elements -->
+  <rect x="20" y="90" width="80" height="40" rx="4" fill="#0066cc" opacity="0.6"/>
+  <rect x="20" y="140" width="80" height="40" rx="4" fill="#ff6600" opacity="0.6"/>
+  
+  <!-- Home indicator -->
+  <rect x="50" y="220" width="20" height="3" rx="2" fill="#666"/>
+  
+  <!-- Text -->
+  <text x="60" y="232" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#999" text-anchor="middle">Galaxy S24</text>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Gift/Deals Icon -->
+  <!-- Box -->
+  <rect x="25" y="45" width="70" height="55" rx="4" fill="#dc3545" stroke="#c82333" stroke-width="2"/>
+  
+  <!-- Box top face -->
+  <path d="M 25 45 L 35 35 L 85 35 L 95 45 Z" fill="#e74c3c" stroke="#c82333" stroke-width="2"/>
+  
+  <!-- Ribbon -->
+  <rect x="55" y="25" width="10" height="80" rx="2" fill="#ffc107" stroke="#e0a800" stroke-width="1"/>
+  <rect x="25" y="40" width="70" height="10" rx="2" fill="#ffc107" stroke="#e0a800" stroke-width="1"/>
+  
+  <!-- Bow -->
+  <ellipse cx="45" cy="30" rx="8" ry="10" fill="#ffc107" stroke="#e0a800" stroke-width="1"/>
+  <ellipse cx="75" cy="30" rx="8" ry="10" fill="#ffc107" stroke="#e0a800" stroke-width="1"/>
+  <circle cx="60" cy="30" r="6" fill="#ffc107" stroke="#e0a800" stroke-width="1"/>
+  
+  <!-- Shine on box -->
+  <ellipse cx="40" cy="60" rx="12" ry="15" fill="white" opacity="0.15"/>
+  
+  <!-- Present shine -->
+  <circle cx="70" cy="75" r="5" fill="white" opacity="0.2"/>
+</svg>

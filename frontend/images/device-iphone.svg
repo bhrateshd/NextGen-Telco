@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 240">
+  <!-- iPhone 15 -->
+  <defs>
+    <linearGradient id="iphoneGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#000;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Phone body -->
+  <rect x="10" y="10" width="100" height="220" rx="20" fill="url(#iphoneGradient)" stroke="#333" stroke-width="2"/>
+  
+  <!-- Notch -->
+  <rect x="45" y="12" width="30" height="18" rx="4" fill="#000" stroke="#333" stroke-width="1"/>
+  
+  <!-- Screen -->
+  <rect x="15" y="40" width="90" height="180" rx="8" fill="#e8e8e8" stroke="#222" stroke-width="1"/>
+  
+  <!-- Camera bump -->
+  <circle cx="75" cy="25" r="6" fill="#333" stroke="#222" stroke-width="1"/>
+  
+  <!-- Glass/Shine effect -->
+  <ellipse cx="35" cy="60" rx="12" ry="25" fill="white" opacity="0.1"/>
+  
+  <!-- App icons on screen -->
+  <rect x="25" y="55" width="15" height="15" rx="3" fill="#0066cc"/>
+  <rect x="50" y="55" width="15" height="15" rx="3" fill="#ff6600"/>
+  <rect x="75" y="55" width="15" height="15" rx="3" fill="#28a745"/>
+  
+  <rect x="25" y="80" width="15" height="15" rx="3" fill="#dc3545"/>
+  <circle cx="57.5" cy="87.5" r="7.5" fill="#ffc107"/>
+  <rect x="75" y="80" width="15" height="15" rx="3" fill="#17a2b8"/>
+  
+  <!-- Text -->
+  <text x="60" y="220" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#333" text-anchor="middle">iPhone 15</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- 5G Network Icon -->
+  <circle cx="60" cy="60" r="50" fill="none" stroke="#0066cc" stroke-width="2" opacity="0.2"/>
+  <circle cx="60" cy="60" r="40" fill="none" stroke="#0066cc" stroke-width="2" opacity="0.4"/>
+  
+  <!-- Signal bars -->
+  <rect x="48" y="70" width="6" height="12" rx="2" fill="#0066cc"/>
+  <rect x="58" y="60" width="6" height="22" rx="2" fill="#0066cc"/>
+  <rect x="68" y="50" width="6" height="32" rx="2" fill="#0066cc"/>
+  
+  <!-- 5G text -->
+  <text x="60" y="45" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#0066cc" text-anchor="middle">5G</text>
+  
+  <!-- Glow effect -->
+  <circle cx="60" cy="60" r="55" fill="none" stroke="#0066cc" stroke-width="1" opacity="0.1" stroke-dasharray="5,5"/>
+</svg>

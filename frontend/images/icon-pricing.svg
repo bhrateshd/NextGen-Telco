@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Piggy Bank Icon -->
+  <!-- Body -->
+  <ellipse cx="60" cy="65" rx="35" ry="32" fill="#ff9800" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Head -->
+  <circle cx="85" cy="50" r="18" fill="#ff9800" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Snout -->
+  <circle cx="100" cy="48" r="8" fill="#ff9800" stroke="#f57c00" stroke-width="2"/>
+  <circle cx="102" cy="48" r="2" fill="#333"/>
+  
+  <!-- Ear -->
+  <ellipse cx="85" cy="28" rx="6" ry="10" fill="#ff9800" stroke="#f57c00" stroke-width="2"/>
+  
+  <!-- Eye -->
+  <circle cx="80" cy="45" r="2.5" fill="#333"/>
+  
+  <!-- Legs -->
+  <rect x="45" y="90" width="6" height="15" rx="3" fill="#ff9800" stroke="#f57c00" stroke-width="1"/>
+  <rect x="65" y="90" width="6" height="15" rx="3" fill="#ff9800" stroke="#f57c00" stroke-width="1"/>
+  <rect x="75" y="90" width="6" height="15" rx="3" fill="#ff9800" stroke="#f57c00" stroke-width="1"/>
+  
+  <!-- Coin slot -->
+  <rect x="55" y="45" width="10" height="2" rx="1" fill="#333"/>
+  
+  <!-- Dollar sign inside -->
+  <text x="60" y="75" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#fff" text-anchor="middle">$</text>
+</svg>
