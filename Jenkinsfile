@@ -3,45 +3,47 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "bhrateshd/nextgen-frontend"
+        IMAGE = "bhrateshd/nextgen-frontend"
+        TAG = "${BUILD_NUMBER}"
     }
 
     stages {
 
-        stage('Clone Repo') {
+        stage('Checkout') {
             steps {
-                git 'https://github.com/bhrateshd/NextGen-Telco.git'
+                checkout scm
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build Image') {
             steps {
-                sh 'docker build -t $IMAGE_NAME:latest ./frontend'
-            }
-        }
-
-        stage('DockerHub Login') {
-            steps {
-                withCredentials([usernamePassword(
-                credentialsId: 'dockerhub-creds',
-                usernameVariable: 'USER',
-                passwordVariable: 'PASS'
-                )]) {
-                    sh 'echo $PASS | docker login -u $USER --password-stdin'
-                }
+                sh "docker build -t ${IMAGE}:${TAG} ./frontend"
+                sh "docker tag ${IMAGE}:${TAG} ${IMAGE}:latest"
             }
         }
 
         stage('Push Image') {
             steps {
-                sh 'docker push $IMAGE_NAME:latest'
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub',
+                        usernameVariable: 'DOCKERHUB_USER',
+                        passwordVariable: 'DOCKERHUB_PWD'
+                    )
+                ]) {
+                    sh """
+                    echo ${DOCKERHUB_PWD} | docker login -u ${DOCKERHUB_USER} --password-stdin
+                    docker push ${IMAGE}:${TAG}
+                    docker push ${IMAGE}:latest
+                    """
+                }
             }
         }
 
         stage('Deploy Container') {
             steps {
                 sh 'docker rm -f nextgen-frontend || true'
-                sh 'docker run -d -p 8081:80 --name nextgen-frontend $IMAGE_NAME:latest'
+                sh "docker run -d -p 8081:80 --name nextgen-frontend ${IMAGE}:latest"
             }
         }
 
