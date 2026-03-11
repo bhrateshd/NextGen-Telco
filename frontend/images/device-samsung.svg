@@ -1,39 +1,74 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 240">
-  <!-- Samsung Galaxy S24 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 280">
   <defs>
-    <linearGradient id="samsungGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#16213e;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#0f3460;stop-opacity:1" />
+    <!-- Samsung S24 gradient -->
+    <linearGradient id="samsungBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a2a2a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2a2a2a;stop-opacity:1" />
     </linearGradient>
+    
+    <linearGradient id="displayGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1f1f1f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="shadow2" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.3"/>
+    </filter>
   </defs>
   
-  <!-- Phone body -->
-  <rect x="8" y="10" width="104" height="220" rx="22" fill="url(#samsungGradient)" stroke="#444" stroke-width="2"/>
+  <!-- Drop shadow -->
+  <g filter="url(#shadow2)">
+    <!-- Phone body -->
+    <rect x="15" y="15" width="110" height="250" rx="28" fill="url(#samsungBody)" stroke="#444" stroke-width="1.5"/>
+    
+    <!-- Camera island background -->
+    <rect x="85" y="25" width="35" height="35" rx="12" fill="#0a0a0a" stroke="#333" stroke-width="1"/>
+    
+    <!-- Camera lenses -->
+    <circle cx="96" cy="35" r="6" fill="#1a1a1a" stroke="#555" stroke-width="1"/>
+    <circle cx="96" cy="35" r="4" fill="#000"/>
+    
+    <circle cx="110" cy="35" r="5.5" fill="#1a1a1a" stroke="#555" stroke-width="1"/>
+    <circle cx="110" cy="35" r="3.5" fill="#000"/>
+    
+    <circle cx="108" cy="52" r="2.5" fill="#555"/>
+    
+    <!-- Display -->
+    <rect x="20" y="50" width="100" height="210" rx="20" fill="url(#displayGradient2)" stroke="#222" stroke-width="1"/>
+    
+    <!-- Screen content -->
+    <rect x="24" y="56" width="92" height="198" rx="16" fill="#0a1428"/>
+    
+    <!-- Samsung One UI status bar -->
+    <g opacity="0.7">
+      <text x="28" y="70" font-family="Arial, sans-serif" font-size="7" fill="#fff">9:41</text>
+      <circle cx="108" cy="66" r="1.5" fill="#fff"/>
+      <circle cx="114" cy="66" r="1.5" fill="#fff"/>
+    </g>
+    
+    <!-- App launcher preview -->
+    <rect x="28" y="85" width="14" height="14" rx="3" fill="#0066cc"/>
+    <rect x="48" y="85" width="14" height="14" rx="3" fill="#ff6600"/>
+    <rect x="68" y="85" width="14" height="14" rx="3" fill="#28a745"/>
+    <rect x="88" y="85" width="14" height="14" rx="3" fill="#dc3545"/>
+    
+    <rect x="28" y="110" width="14" height="14" rx="3" fill="#17a2b8"/>
+    <rect x="48" y="110" width="14" height="14" rx="3" fill="#ffc107"/>
+    <rect x="68" y="110" width="14" height="14" rx="3" fill="#9b59b6"/>
+    
+    <!-- Content placeholders -->
+    <rect x="28" y="135" width="76" height="8" rx="2" fill="#ffffff" opacity="0.15"/>
+    <rect x="28" y="150" width="76" height="8" rx="2" fill="#ffffff" opacity="0.1"/>
+    <rect x="28" y="165" width="76" height="8" rx="2" fill="#ffffff" opacity="0.1"/>
+    
+    <!-- Bottom gesture area -->
+    <rect x="58" y="244" width="24" height="2.5" rx="1.5" fill="#666" opacity="0.6"/>
+    
+    <!-- Display shine -->
+    <ellipse cx="45" cy="110" rx="18" ry="40" fill="white" opacity="0.06"/>
+  </g>
   
-  <!-- Camera module -->
-  <rect x="15" y="18" width="45" height="28" rx="8" fill="#111" stroke="#333" stroke-width="1"/>
-  <circle cx="28" cy="32" r="7" fill="#222" stroke="#333" stroke-width="1"/>
-  <circle cx="45" cy="32" r="6" fill="#222" stroke="#333" stroke-width="1"/>
-  
-  <!-- Screen -->
-  <rect x="12" y="50" width="96" height="170" rx="18" fill="#1f1f1f" stroke="#333" stroke-width="1"/>
-  
-  <!-- Screen display area -->
-  <rect x="16" y="54" width="88" height="162" rx="14" fill="#0099ff" opacity="0.3"/>
-  
-  <!-- Status indicators on screen -->
-  <circle cx="30" cy="70" r="8" fill="#ff6b6b"/>
-  <circle cx="60" cy="70" r="8" fill="#4ecdc4"/>
-  <circle cx="90" cy="70" r="8" fill="#45b7d1"/>
-  
-  <!-- UI elements -->
-  <rect x="20" y="90" width="80" height="40" rx="4" fill="#0066cc" opacity="0.6"/>
-  <rect x="20" y="140" width="80" height="40" rx="4" fill="#ff6600" opacity="0.6"/>
-  
-  <!-- Home indicator -->
-  <rect x="50" y="220" width="20" height="3" rx="2" fill="#666"/>
-  
-  <!-- Text -->
-  <text x="60" y="232" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#999" text-anchor="middle">Galaxy S24</text>
+  <!-- Model name -->
+  <text x="70" y="275" font-family="Arial, sans-serif" font-size="11" font-weight="600" fill="#333" text-anchor="middle">Galaxy S24</text>
 </svg>
