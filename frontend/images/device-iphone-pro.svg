@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 280">
+  <defs>
+    <!-- iPhone 15 Pro Titanium gradient -->
+    <linearGradient id="iphoneProBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3a3a3a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2a2a2a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3a3a3a;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="proDisplayGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1f1f1f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="shadowPro" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Drop shadow -->
+  <g filter="url(#shadowPro)">
+    <!-- Titanium edges -->
+    <rect x="15" y="15" width="110" height="250" rx="24" fill="url(#iphoneProBody)" stroke="#666" stroke-width="2"/>
+    
+    <!-- Triple camera setup -->
+    <rect x="88" y="20" width="30" height="30" rx="6" fill="#1a1a1a" stroke="#555" stroke-width="1.5"/>
+    
+    <circle cx="97" cy="28" r="6" fill="#000" stroke="#666" stroke-width="1"/>
+    <circle cx="97" cy="28" r="3.5" fill="#333"/>
+    
+    <circle cx="110" cy="28" r="5.5" fill="#000" stroke="#666" stroke-width="1"/>
+    <circle cx="110" cy="28" r="3" fill="#333"/>
+    
+    <circle cx="104" cy="42" r="3.5" fill="#000" stroke="#666" stroke-width="1"/>
+    
+    <!-- Titanium button (red action button) -->
+    <rect x="20" y="85" width="6" height="18" rx="2" fill="#e74c3c" stroke="#999" stroke-width="0.5"/>
+    
+    <!-- Display -->
+    <rect x="20" y="50" width="100" height="210" rx="18" fill="url(#proDisplayGradient)" stroke="#333" stroke-width="1.5"/>
+    
+    <!-- Screen content -->
+    <rect x="24" y="56" width="92" height="198" rx="14" fill="#0a0a0a"/>
+    
+    <!-- Pro UI - more premium -->
+    <g opacity="0.8">
+      <text x="28" y="70" font-family="Arial, sans-serif" font-size="7" fill="#fff" font-weight="600">9:41</text>
+      <circle cx="108" cy="66" r="1.5" fill="#fff"/>
+      <circle cx="114" cy="66" r="1.5" fill="#fff"/>
+    </g>
+    
+    <!-- Pro features display -->
+    <rect x="28" y="85" width="14" height="14" rx="3" fill="#0066cc" opacity="0.9"/>
+    <rect x="48" y="85" width="14" height="14" rx="3" fill="#ff6600" opacity="0.9"/>
+    <rect x="68" y="85" width="14" height="14" rx="3" fill="#28a745" opacity="0.9"/>
+    <rect x="88" y="85" width="14" height="14" rx="3" fill="#9b59b6" opacity="0.9"/>
+    
+    <!-- Premium content areas -->
+    <rect x="28" y="110" width="76" height="6" rx="2" fill="#ffffff" opacity="0.2"/>
+    <rect x="28" y="122" width="76" height="6" rx="2" fill="#ffffff" opacity="0.15"/>
+    <rect x="28" y="135" width="76" height="60" rx="3" fill="#0066cc" opacity="0.2"/>
+    
+    <!-- Pro camera indicator -->
+    <text x="28" y="210" font-family="Arial, sans-serif" font-size="6" fill="#999" opacity="0.7">PRO CAMERA</text>
+    
+    <!-- Home indicator -->
+    <rect x="58" y="248" width="24" height="2.5" rx="1.5" fill="#777" opacity="0.7"/>
+    
+    <!-- Premium shine -->
+    <ellipse cx="40" cy="110" rx="16" ry="40" fill="white" opacity="0.08"/>
+  </g>
+  
+  <!-- Model name -->
+  <text x="70" y="275" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#555" text-anchor="middle">iPhone 15 Pro</text>
+</svg>
