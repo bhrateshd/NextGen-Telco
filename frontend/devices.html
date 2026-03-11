@@ -3,11 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NextGen Telco - Devices</title>
+    <title>NextGen Telco - Mobile Devices</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Devices</h1>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="index.html" class="logo">NextGen Telco</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="plans.html">Plans</a></li>
+                <li><a href="devices.html" class="active">Devices</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="dashboard.html">My Account</a></li>
+                <li class="nav-btn"><a href="login.html" class="btn-primary">Sign In</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Shop Devices</h1>
+            <p>The latest smartphones, tablets, and accessories</p>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-row">
+                <div class="filter-group">
+                    <label>Brand:</label>
+                    <select id="brand-filter">
+                        <option value="">All Brands</option>
+                        <option value="apple">Apple</option>
+                        <option value="samsung">Samsung</option>
+                        <option value="google">Google</option>
+                        <option value="motorola">Motorola</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Price:</label>
+                    <select id="price-filter">
+                        <option value="">All Prices</option>
+                        <option value="0-500">Under $500</option>
+                        <option value="500-800">$500 - $800</option>
+                        <option value="800+">$800+</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Type:</label>
+                    <select id="type-filter">
+                        <option value="">All Types</option>
+                        <option value="smartphone">Smartphone</option>
+                        <option value="tablet">Tablet</option>
+                        <option value="accessory">Accessory</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Devices Grid -->
+    <section class="devices-shop">
+        <div class="container">
+            <div class="devices-list">
+                <!-- Smartphones -->
+                <div class="device-item">
+                    <div class="device-image-container">
+                        <div class="device-image">iPhone 15 Pro</div>
+                        <span class="badge">New</span>
+                    </div>
+                    <h3>iPhone 15 Pro</h3>
+                    <p class="brand">Apple</p>
+                    <div class="specs">
+                        <span>6.1" Display</span>
+                        <span>512GB Storage</span>
+                    </div>
+                    <p class="price">$999</p>
+                    <a href="cart.html" class="btn-primary">Add to Cart</a>
+                </div>
+
+                <div class="device-item">
+                    <div class="device-image-container">
+                        <div class="device-image">iPhone 15</div>
+                    </div>
+                    <h3>iPhone 15</h3>
+                    <p class="brand">Apple</p>
+                    <div class="specs">
+                        <span>6.1" Display</span>
+                        <span>128GB Storage</span>
+                    </div>
+                    <p class="price">$749</p>
+                    <a href="cart.html" class="btn-primary">Add to Cart</a>
+                </div>
+
+                <div class="device-item">
+                    <div class="device-image-container">
+                        <div class="device-image">Samsung Galaxy S24 Ultra</div>
+                        <span class="badge">New</span>
+                    </div>
+                    <h3>Samsung Galaxy S24 Ultra</h3>
+                    <p class="brand">Samsung</p>
+                    <div class="specs">
+                        <span>6.8" Display</span>
+                        <span>512GB Storage</span>
+                    </div>
+                    <p class="price">$1,299</p>
+                    <a href="cart.html" class="btn-primary">Add to Cart</a>
+                </div>
+
+                <div class="device-item">
+                    <div class="device-image-container">
+                        <div class="device-image">Samsung Galaxy S24</div>
+                    </div>
+                    <h3>Samsung Galaxy S24</h3>
+                    <p class="brand">Samsung</p>
+                    <div class="specs">
+                        <span>6.2" Display</span>
+                        <span>256GB Storage</span>
+                    </div>
+                    <p class="price">$799</p>
+                    <a href="cart.html" class="btn-primary">Add to Cart</a>
+                </div>
+
+                <div class="device-item">
+                    <div class="device-image-container">
+                        <div class="device-image">Google Pixel 8 Pro</div>
+                    </div>
+                    <h3>Google Pixel 8 Pro</h3>
+                    <p class="brand">Google</p>
+                    <div class="specs">
+                        <span>6.7" Display</span>
+                        <span>256GB Storage</span>
+                    </div>
+                    <p class="price">$899</p>
+                    <a href="cart.html" class="btn-primary">Add to Cart</a>
+                </div>
+
+                <div class="device-item">
+                    <div class="device-image-container">
+                        <div class="device-image">Google Pixel 8</div>
+                    </div>
+                    <h3>Google Pixel 8</h3>
+                    <p class="brand">Google</p>
+                    <div class="specs">
+                        <span>6.2" Display</span>
+                        <span>128GB Storage</span>
+                    </div>
+                    <p class="price">$649</p>
+                    <a href="cart.html" class="btn-primary">Add to Cart</a>
+                </div>
+
+                <div class="device-item">
+                    <div class="device-image-container">
+                        <div class="device-image">Motorola Edge 50</div>
+                    </div>
+                    <h3>Motorola Edge 50</h3>
+                    <p class="brand">Motorola</p>
+                    <div class="specs">
+                        <span>6.4" Display</span>
+                        <span>256GB Storage</span>
+                    </div>
+                    <p class="price">$549</p>
+                    <a href="cart.html" class="btn-primary">Add to Cart</a>
+                </div>
+
+                <div class="device-item">
+                    <div class="device-image-container">
+                        <div class="device-image">iPad Pro</div>
+                    </div>
+                    <h3>iPad Pro 12.9"</h3>
+                    <p class="brand">Apple</p>
+                    <div class="specs">
+                        <span>12.9" Display</span>
+                        <span>256GB Storage</span>
+                    </div>
+                    <p class="price">$799</p>
+                    <a href="cart.html" class="btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 NextGen Telco. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

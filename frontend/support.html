@@ -3,11 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NextGen Telco - Support</title>
+    <title>NextGen Telco - Support & Help</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Support</h1>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="index.html" class="logo">NextGen Telco</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="plans.html">Plans</a></li>
+                <li><a href="devices.html">Devices</a></li>
+                <li><a href="support.html" class="active">Support</a></li>
+                <li><a href="dashboard.html">My Account</a></li>
+                <li class="nav-btn"><a href="login.html" class="btn-primary">Sign In</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Help & Support</h1>
+            <p>Get answers and resolve issues quickly</p>
+        </div>
+    </section>
+
+    <!-- Support Options -->
+    <section class="support-options">
+        <div class="container">
+            <div class="options-grid">
+                <div class="option-card">
+                    <div class="option-icon">💬</div>
+                    <h3>Live Chat</h3>
+                    <p>Chat with our support team instantly</p>
+                    <a href="#" class="btn-secondary">Start Chat</a>
+                </div>
+                <div class="option-card">
+                    <div class="option-icon">📞</div>
+                    <h3>Call Us</h3>
+                    <p>Speak with a representative</p>
+                    <a href="tel:1-800-NEXTGEN" class="btn-secondary">1-800-639-8436</a>
+                </div>
+                <div class="option-card">
+                    <div class="option-icon">📧</div>
+                    <h3>Email Support</h3>
+                    <p>Send us an email, response within 24 hours</p>
+                    <a href="mailto:support@nextgentelco.com" class="btn-secondary">Email Us</a>
+                </div>
+                <div class="option-card">
+                    <div class="option-icon">🏪</div>
+                    <h3>Store Locator</h3>
+                    <p>Visit a store near you</p>
+                    <a href="#" class="btn-secondary">Find Stores</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h4>How do I activate my new phone?</h4>
+                    <p>You can activate your new phone through our website, mobile app, or by calling customer service. You'll need your device IMEI number and account information.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What is your coverage area?</h4>
+                    <p>NextGen Telco provides nationwide 5G and LTE coverage. Check our coverage map on the website to see coverage in your area.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can I upgrade my plan?</h4>
+                    <p>Yes! You can upgrade or downgrade your plan anytime through your account dashboard. Changes take effect on your next billing cycle.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What are the contract terms?</h4>
+                    <p>NextGen Telco offers no contract plans. You can cancel or modify your service anytime without penalties.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How do I check my data usage?</h4>
+                    <p>Log into your account dashboard to view real-time data usage. You can also download the NextGen Telco app for usage tracking.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you offer family plans?</h4>
+                    <p>Yes! We offer flexible family plans for 2-5 lines with significant savings. Visit our Plans page to see family plan options.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-section">
+        <div class="container">
+            <h2>Still need help?</h2>
+            <form class="contact-form" id="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contact-name">Name</label>
+                        <input type="text" id="contact-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email</label>
+                        <input type="email" id="contact-email" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-subject">Subject</label>
+                    <select id="contact-subject" required>
+                        <option value="">Select a topic</option>
+                        <option value="billing">Billing Issue</option>
+                        <option value="technical">Technical Support</option>
+                        <option value="service">Service Quality</option>
+                        <option value="general">General Question</option>
+                        <option value="feedback">Feedback</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-message">Message</label>
+                    <textarea id="contact-message" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 NextGen Telco. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

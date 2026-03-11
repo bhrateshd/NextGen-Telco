@@ -3,11 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NextGen Telco - Cart</title>
+    <title>NextGen Telco - Shopping Cart</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Cart</h1>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="index.html" class="logo">NextGen Telco</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="plans.html">Plans</a></li>
+                <li><a href="devices.html">Devices</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="dashboard.html">My Account</a></li>
+                <li class="nav-btn"><a href="login.html" class="btn-primary">Sign In</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="container">
+            <h1>Shopping Cart</h1>
+
+            <div class="cart-content">
+                <div class="cart-items">
+                    <div class="cart-item">
+                        <div class="item-info">
+                            <h3>Unlimited Plus Plan</h3>
+                            <p>$65/month</p>
+                        </div>
+                        <div class="item-quantity">
+                            <label>Quantity:</label>
+                            <input type="number" value="1" min="1">
+                        </div>
+                        <div class="item-total">$65</div>
+                        <button class="btn-remove">Remove</button>
+                    </div>
+
+                    <div class="cart-item">
+                        <div class="item-info">
+                            <h3>iPhone 15</h3>
+                            <p>$749</p>
+                        </div>
+                        <div class="item-quantity">
+                            <label>Quantity:</label>
+                            <input type="number" value="1" min="1">
+                        </div>
+                        <div class="item-total">$749</div>
+                        <button class="btn-remove">Remove</button>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <h2>Order Summary</h2>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span>$814</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping:</span>
+                        <span>Free</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax:</span>
+                        <span id="tax">$65.12</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="grand-total">$879.12</span>
+                    </div>
+
+                    <div class="promo-code">
+                        <input type="text" placeholder="Enter promo code">
+                        <button class="btn-secondary">Apply</button>
+                    </div>
+
+                    <a href="orders.html" class="btn-primary btn-block">Proceed to Checkout</a>
+                    <a href="devices.html" class="btn-secondary btn-block">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 NextGen Telco. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

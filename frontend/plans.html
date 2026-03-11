@@ -3,11 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NextGen Telco - Plans</title>
+    <title>NextGen Telco - Mobile Plans</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Plans</h1>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="index.html" class="logo">NextGen Telco</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="plans.html" class="active">Plans</a></li>
+                <li><a href="devices.html">Devices</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="dashboard.html">My Account</a></li>
+                <li class="nav-btn"><a href="login.html" class="btn-primary">Sign In</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Choose Your Perfect Plan</h1>
+            <p>Unlimited talking, texting and high-speed data at prices that fit your budget</p>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section class="plans-section">
+        <div class="container">
+            <div class="filters">
+                <label>
+                    <input type="radio" name="plan-type" value="all" checked> All Plans
+                </label>
+                <label>
+                    <input type="radio" name="plan-type" value="individual"> Individual
+                </label>
+                <label>
+                    <input type="radio" name="plan-type" value="family"> Family
+                </label>
+            </div>
+
+            <div class="plans-grid large">
+                <div class="plan-card full">
+                    <span class="badge">Best Value</span>
+                    <h3>Unlimited Basic</h3>
+                    <p class="price">$45<span>/month</span></p>
+                    <div class="plan-details">
+                        <h4>What's Included:</h4>
+                        <ul>
+                            <li>✓ Unlimited local and long-distance calling</li>
+                            <li>✓ Unlimited texting to any network</li>
+                            <li>✓ 2GB high-speed data monthly</li>
+                            <li>✓ 5G access (where available)</li>
+                            <li>✓ Mobile hotspot capable</li>
+                            <li>✓ International texting</li>
+                            <li>✓ Free voicemail</li>
+                            <li>✓ Call waiting & caller ID</li>
+                        </ul>
+                    </div>
+                    <a href="cart.html" class="btn-primary btn-block">Add to Cart</a>
+                </div>
+
+                <div class="plan-card full featured">
+                    <span class="badge featured">Most Popular</span>
+                    <h3>Unlimited Plus</h3>
+                    <p class="price">$65<span>/month</span></p>
+                    <div class="plan-details">
+                        <h4>What's Included:</h4>
+                        <ul>
+                            <li>✓ Unlimited local and long-distance calling</li>
+                            <li>✓ Unlimited texting to any network</li>
+                            <li>✓ 10GB high-speed data monthly</li>
+                            <li>✓ 5G access (where available)</li>
+                            <li>✓ Mobile hotspot (5GB)</li>
+                            <li>✓ International texting & data</li>
+                            <li>✓ Priority customer support</li>
+                            <li>✓ Free cloud backup</li>
+                        </ul>
+                    </div>
+                    <a href="cart.html" class="btn-primary btn-block">Add to Cart</a>
+                </div>
+
+                <div class="plan-card full">
+                    <span class="badge">Premium</span>
+                    <h3>Unlimited Pro</h3>
+                    <p class="price">$85<span>/month</span></p>
+                    <div class="plan-details">
+                        <h4>What's Included:</h4>
+                        <ul>
+                            <li>✓ Unlimited local and long-distance calling</li>
+                            <li>✓ Unlimited texting to any network</li>
+                            <li>✓ Unlimited high-speed data</li>
+                            <li>✓ Unlimited 5G (where available)</li>
+                            <li>✓ Unlimited mobile hotspot</li>
+                            <li>✓ Global calling & texting</li>
+                            <li>✓ 24/7 Premium support</li>
+                            <li>✓ Device insurance included</li>
+                        </ul>
+                    </div>
+                    <a href="cart.html" class="btn-primary btn-block">Add to Cart</a>
+                </div>
+            </div>
+
+            <div class="family-plans-section">
+                <h2>Family Plans (Save More!)</h2>
+                <div class="plans-grid">
+                    <div class="plan-card">
+                        <h3>Family Starter</h3>
+                        <p class="price">$120<span>/2 lines</span></p>
+                        <ul class="features">
+                            <li>2 Unlimited Basic lines</li>
+                            <li>Save $15/month</li>
+                            <li>Manage online</li>
+                        </ul>
+                        <a href="cart.html" class="btn-primary">Add to Cart</a>
+                    </div>
+                    <div class="plan-card">
+                        <h3>Family Plus</h3>
+                        <p class="price">$180<span>/3 lines</span></p>
+                        <ul class="features">
+                            <li>3 Unlimited Plus lines</li>
+                            <li>Save $30/month</li>
+                            <li>Family sharing options</li>
+                        </ul>
+                        <a href="cart.html" class="btn-primary">Add to Cart</a>
+                    </div>
+                    <div class="plan-card">
+                        <h3>Family Elite</h3>
+                        <p class="price">$240<span>/4 lines</span></p>
+                        <ul class="features">
+                            <li>4 Unlimited Pro lines</li>
+                            <li>Save $60/month</li>
+                            <li>Premium family features</li>
+                        </ul>
+                        <a href="cart.html" class="btn-primary">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add-ons Section -->
+    <section class="addons-section">
+        <div class="container">
+            <h2>Popular Add-ons</h2>
+            <div class="addons-grid">
+                <div class="addon-card">
+                    <h4>Extra Data</h4>
+                    <p>1GB for $10/month</p>
+                </div>
+                <div class="addon-card">
+                    <h4>Device Insurance</h4>
+                    <p>From $12/month</p>
+                </div>
+                <div class="addon-card">
+                    <h4>International Roaming</h4>
+                    <p>$25/month unlimited</p>
+                </div>
+                <div class="addon-card">
+                    <h4>Premium Support</h4>
+                    <p>$5/month</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 NextGen Telco. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

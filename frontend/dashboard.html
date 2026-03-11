@@ -3,11 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NextGen Telco - Dashboard</title>
+    <title>NextGen Telco - My Account</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Dashboard</h1>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="index.html" class="logo">NextGen Telco</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="plans.html">Plans</a></li>
+                <li><a href="devices.html">Devices</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li class="nav-btn"><a href="login.html" class="btn-primary">Sign Out</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-section">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Welcome, John Doe</h1>
+                <p>Manage your account and services</p>
+            </div>
+
+            <div class="dashboard-content">
+                <!-- Sidebar -->
+                <aside class="dashboard-sidebar">
+                    <nav class="sidebar-menu">
+                        <a href="#overview" class="menu-item active">Account Overview</a>
+                        <a href="#billing" class="menu-item">Billing & Payments</a>
+                        <a href="#usage" class="menu-item">Usage</a>
+                        <a href="#lines" class="menu-item">My Lines</a>
+                        <a href="#settings" class="menu-item">Settings</a>
+                    </nav>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="dashboard-main">
+                    <!-- Account Overview -->
+                    <section id="overview" class="dashboard-card">
+                        <h2>Account Overview</h2>
+                        <div class="account-info">
+                            <div class="info-item">
+                                <label>Name:</label>
+                                <span>John Doe</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Email:</label>
+                                <span>john@example.com</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Account Number:</label>
+                                <span>NG-123456789</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Current Plan:</label>
+                                <span>Unlimited Plus - $65/month</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Quick Actions -->
+                    <section class="dashboard-card">
+                        <h2>Quick Actions</h2>
+                        <div class="quick-actions">
+                            <a href="#" class="action-btn">Pay Bill</a>
+                            <a href="#" class="action-btn">View Bill</a>
+                            <a href="plans.html" class="action-btn">Change Plan</a>
+                            <a href="#" class="action-btn">Add Line</a>
+                        </div>
+                    </section>
+
+                    <!-- Billing & Payments -->
+                    <section id="billing" class="dashboard-card">
+                        <h2>Billing & Payments</h2>
+                        <div class="billing-info">
+                            <div class="billing-item">
+                                <label>Current Balance:</label>
+                                <span class="amount">$65.00</span>
+                            </div>
+                            <div class="billing-item">
+                                <label>Due Date:</label>
+                                <span>March 20, 2026</span>
+                            </div>
+                            <div class="billing-item">
+                                <label>Last Payment:</label>
+                                <span>March 10, 2026</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn-primary">Make Payment</a>
+                    </section>
+
+                    <!-- Data Usage -->
+                    <section id="usage" class="dashboard-card">
+                        <h2>Current Data Usage</h2>
+                        <div class="usage-item">
+                            <label>Data Used:</label>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 65%"></div>
+                            </div>
+                            <span>6.5GB of 10GB</span>
+                        </div>
+                        <div class="usage-item">
+                            <label>Messaging:</label>
+                            <span>Unlimited</span>
+                        </div>
+                    </section>
+
+                    <!-- My Lines -->
+                    <section id="lines" class="dashboard-card">
+                        <h2>My Lines</h2>
+                        <div class="lines-list">
+                            <div class="line-item">
+                                <h4>Line 1 (Primary)</h4>
+                                <p>+1 (555) 123-4567</p>
+                                <p class="plan-info">Unlimited Plus • Active</p>
+                                <a href="#">Manage</a>
+                            </div>
+                        </div>
+                        <a href="#" class="btn-secondary">Add Another Line</a>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 NextGen Telco. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
