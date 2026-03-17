@@ -1,21 +1,24 @@
 pipeline {
 
+
     agent any
-parameters {
-        choice(name: 'ENV', choices: ['dev', 'qa', 'prod'], description: 'Select environment')
-    }
+
+
     environment {
         IMAGE = "bhrateshd/nextgen-frontend"
         TAG = "${BUILD_NUMBER}"
     }
 
+
     stages {
+
 
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
+
 
         stage('Build Image') {
             steps {
@@ -24,13 +27,14 @@ parameters {
             }
         }
 
+
         stage('Push Image') {
             steps {
                 withCredentials([
                     usernamePassword(
                         credentialsId: 'dockerhub',
                         usernameVariable: 'DOCKERHUB_USER',
-                        passwordVariable: 'DOCKERHUB_PWD'
+                        passwordVariable: '[Credentials]'
                     )
                 ]) {
                     sh """
@@ -42,6 +46,7 @@ parameters {
             }
         }
 
+
         stage('Deploy Container') {
             steps {
                 sh 'docker rm -f nextgen-frontend || true'
@@ -49,5 +54,7 @@ parameters {
             }
         }
 
+
     }
 }
+
